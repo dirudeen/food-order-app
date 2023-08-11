@@ -32,9 +32,11 @@ const AvailableMeals = () => {
         return <li id={meal.id}>{meal.name}</li>
     })
     return (
-        <ul>
-            {mealList}
-        </ul>
+        <section>
+            <ul>
+                {mealList}
+            </ul>
+        </section>
     );
 }
 
