@@ -1,8 +1,9 @@
 import React from 'react';
+import classes from '../Styles/MealsSummary.module.css'
 
 const MealsSummary = () => {
     return (
-        <section>
+        <section className={classes.summary}>
             <h2>Delicious Food, Delievered To You</h2>
             <p>
                 choose your favorite meal from out broad selection of available meals and enjoy a delcious luch or dinner at home
