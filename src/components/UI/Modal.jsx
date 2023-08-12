@@ -8,15 +8,19 @@ const Backdrop = () => {
 }
 
 const Overlays = props => {
-    return <div className={classes.modal}>{props.children}</div>
+    return (
+      <div className={classes.modal}>
+        <div>{props.children}</div>
+      </div>
+    );
 }
 
-const Modal = () => {
+const Modal = (props) => {
     const portalElement = document.getElementById('overlays-root')
     return (
         <>
             {ReactDOM.createPortal(<Backdrop />, portalElement)}
-            {ReactDOM.createPortal(<Overlays />, portalElement)}
+            {ReactDOM.createPortal(<Overlays>{props.children}</Overlays>, portalElement)}
         </>
     );
 }
