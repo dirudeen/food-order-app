@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
+import classes from "../Styles/Input.module.css";
 
-const Input = () => {
+const Input = (props) => {
   return (
-    <Fragment>
-        <label htmlFor=""></label>
-      <input type="number" name="" id="" />
-    </Fragment>
+    <div className={classes.input}>
+      <label htmlFor={props.input.id}>{props.label}</label>
+      <input {...props.input} />
+    </div>
   );
 };
 
