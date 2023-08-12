@@ -11,13 +11,13 @@ function App() {
     return setCartIsShown(true);
   }
 
-  function HideShowCartHandler() {
-    return setCartIsShown(true)
+  function HideCartHandler() {
+    return setCartIsShown(false);
   }
 
   return (
     <>
-    {cartIsShown && <Cart></Cart>}
+    {cartIsShown && <Cart onHideCart={HideCartHandler}></Cart>}
     <Header onShowCart={showCartHandler}></Header>
     <Meals></Meals>
     </>
