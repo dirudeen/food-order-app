@@ -3,18 +3,20 @@ import classes from "../../Styles/MealItemForm.module.css";
 import Input from "../../UI/Input";
 
 const MealItemForm = (props) => {
-  const CartInputRef = useRef()
+  const CartInputRef = useRef();
+
   const submitHandler = (e) => {
     e.preventDefault();
 
     const enteredAmount = CartInputRef.current.value;
     const enteredAmountNumber = +enteredAmount
 
+
     if(enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
       return;
     }
 
-    props.onAdd = enteredAmountNumber
+    props.onAdd(enteredAmountNumber)
   }
   
   return (
