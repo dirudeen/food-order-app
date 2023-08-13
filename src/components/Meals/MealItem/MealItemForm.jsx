@@ -14,7 +14,7 @@ const MealItemForm = (props) => {
       return;
     }
 
-    props.onAddAmount = enteredAmountNumber
+    props.onAdd = enteredAmountNumber
   }
   
   return (
