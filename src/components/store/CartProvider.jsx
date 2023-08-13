@@ -1,17 +1,19 @@
-import React from 'react';
-import CartContext from './cart-context';
+import React from "react";
+import CartContext from "./cart-context";
 
-const CartProvider = () => {
-    const values = {
-        item: [],
-        totalAmount: 0,
-        
-    }
-    return (
-        <CartContext>
-        
-        </CartContext>
-    );
-}
+const CartProvider = (props) => {
+  const addItemToCart = (items) => {};
+  const removeItemFromCart = (id) => {};
+
+  const values = {
+    items: [],
+    totalAmount: 0,
+    addItemToCart: addItemToCart,
+    removeItemFromCart: removeItemFromCart,
+  };
+  return (
+    <CartContext.Provider value={values}>{props.children}</CartContext.Provider>
+  );
+};
 
 export default CartProvider;
