@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "../Styles/CardItem.module.css";
+import classes from "../Styles/CartItem.module.css";
 
-const CardItem = (props) => {
+const CartItem = (props) => {
   const price = `$${props.price.toFixed(2)}`;
   return (
     <li className={classes["cart-item"]}>
@@ -18,4 +18,4 @@ const CardItem = (props) => {
   );
 };
 
-export default CardItem;
+export default CartItem;
