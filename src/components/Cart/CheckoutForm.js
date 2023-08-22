@@ -1,8 +1,12 @@
 import React from 'react';
 import classes from "../Styles/CheckoutForm.module.css"
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
+const submitFormHandler = (e) => {
+    e.preventDefault()
+}
+
     return (
-        <form>
+        <form className={classes.form} onSubmit={submitFormHandler}>
             <div className={classes.control}>
                 <label htmlFor='name'>Your Name</label>
                 <input type='text' id='name'/>
@@ -19,8 +23,10 @@ const CheckoutForm = () => {
                 <label htmlFor='city'>City</label>
                 <input type='text' id='city'/>
             </div>
-            <button>Cancel</button>
-            <button>Confirm</button>
+            <div className={classes.actions}>
+                <button type='button' onClick={props.onCancel}>Cancel</button>
+                <button className={classes.submit} type='submit'>Confirm</button>
+            </div>
         </form>
     );
 }
