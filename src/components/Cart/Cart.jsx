@@ -6,16 +6,16 @@ import CartItem from "./CartItem";
 import CheckoutForm from "./CheckoutForm";
 
 const Cart = (props) => {
-  const [isCheckout, setIsCheckout] = useState(false)
+  const [isCheckout, setIsCheckout] = useState(false);
   const ctx = useContext(CartContex);
 
   const cartItemRemoveHandler = (id) => {
-    ctx.removeItem(id)
+    ctx.removeItem(id);
   };
   const cartItemAddHandler = (item) => {
-    ctx.addItem(item)
+    ctx.addItem(item);
   };
-  const hasItems = ctx.items.length > 0
+  const hasItems = ctx.items.length > 0;
   const CartItems = (
     <ul className={classes["cart-items"]}>
       {ctx.items.map((item) => {
@@ -25,7 +25,7 @@ const Cart = (props) => {
             name={item.name}
             price={item.price}
             amount={item.amount}
-            onRemove={cartItemRemoveHandler.bind(null,item.id)}
+            onRemove={cartItemRemoveHandler.bind(null, item.id)}
             onAdd={cartItemAddHandler.bind(null, item)}
           />
         );
@@ -34,8 +34,20 @@ const Cart = (props) => {
   );
 
   const orderHandler = () => {
-    setIsCheckout(true)
-  }
+    setIsCheckout(true);
+  };
+
+  const sumbitOrderHandler = (userData) => {
+    fetch("https://tasks-data-17dc7-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: ctx.items,
+      })
+    }).then(res =>{
+      console.log(res.json())
+    })
+  };
 
   const actionButtons = (
     <div className={classes.actions}>
@@ -57,9 +69,13 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{`$${ctx.totalAmount.toFixed(2)}`}</span>
       </div>
-      {isCheckout && < CheckoutForm onCancel={props.onHideCart} />}
+      {isCheckout && (
+        <CheckoutForm
+          onConfirm={sumbitOrderHandler}
+          onCancel={props.onHideCart}
+        />
+      )}
       {!isCheckout && actionButtons}
-
     </Modal>
   );
 };
